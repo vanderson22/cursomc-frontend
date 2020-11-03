@@ -4,26 +4,29 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+//import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+ 
 
+// Decorator -> Configurações para alterar a classe 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    ListPage
+    MyApp, // nome da classe principal declarada em app.component.ts
+    HomePage
+    //ListPage
   ],
+  // Lista de módulos que vão ser importados 
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp), // declarou o principal
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
+    //ListPage
   ],
   providers: [
     StatusBar,
@@ -31,4 +34,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
+
+//   export -> Permite ser importado 
 export class AppModule {}
