@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+// não precisa mais pois na Linha 19 foi referenciado string import { HomePage } from '../pages/home/home';
 //import { ListPage } from '../pages/list/list';
 
 @Component({
@@ -13,17 +13,20 @@ import { HomePage } from '../pages/home/home';
 // MyApp nome da classe principal
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+   
+  //@IonicPage()
+   // troca desse  rootPage: any = HomePage; por 
+    rootPage: string = 'HomePage';
 
-  rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: 'HomePage' }
     //  { title: 'List', component: ListPage }
     ];
 

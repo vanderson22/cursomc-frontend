@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 //import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -13,8 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // Decorator -> Configurações para alterar a classe 
 @NgModule({
   declarations: [
-    MyApp, // nome da classe principal declarada em app.component.ts
-    HomePage
+    MyApp // nome da classe principal declarada em app.component.ts
+    //HomePage Removido e criado um subModulo
     //ListPage
   ],
   // Lista de módulos que vão ser importados 
@@ -24,8 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
+    //HomePage
     //ListPage
   ],
   providers: [
