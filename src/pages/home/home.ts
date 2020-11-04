@@ -16,5 +16,13 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
+  
+  //publico 
+  public login(){
+     // já estava injetado pois estava no construtor 
+       //push -> navegar    
+    // Navegação impilhada  this.navCtrl.push('CategoriasPage'); tem um botão de voltar 
+    this.navCtrl.setRoot('CategoriasPage');
+   }
 
 }
