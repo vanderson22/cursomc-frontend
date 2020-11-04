@@ -18,8 +18,14 @@ export class CategoriasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoriasPage');
-  }
 
+
+  //ciclo de vida da página
+  //
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad - Iniciou a paágina categorias');
+
+
+  }
+    
 }

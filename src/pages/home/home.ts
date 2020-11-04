@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController } from 'ionic-angular';
 
 //Para o ionic entender que pode referenciar a classe como string "HomePage"
 @IonicPage()
@@ -13,9 +13,11 @@ import { IonicPage, NavController } from 'ionic-angular';
 //Controlador da view home.html
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController  , public meuMenu: MenuController) {
 
   }
+
+   
   
   //publico 
   public login(){
@@ -23,6 +25,15 @@ export class HomePage {
        //push -> navegar    
     // Navegação impilhada  this.navCtrl.push('CategoriasPage'); tem um botão de voltar 
     this.navCtrl.setRoot('CategoriasPage');
+   }
+
+   ionViewWillEnter(){
+    console.log('ionViewWillEnter - Entrando na paágina categorias');
+    this.meuMenu.swipeEnable(false);
+   }
+   ionViewDidLeave(){
+    console.log('ionViewDidLeave - Saindo na paágina categorias');
+    this.meuMenu.swipeEnable(true);
    }
 
 }
