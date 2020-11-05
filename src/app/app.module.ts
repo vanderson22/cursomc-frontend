@@ -8,7 +8,11 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
- 
+
+// import na mão
+import { HttpClientModule } from '@angular/common/http';
+import { CategoriaService } from '../servicos/dominio/categoria.service';
+
 
 // Decorator -> Configurações para alterar a classe 
 @NgModule({
@@ -20,7 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   // Lista de módulos que vão ser importados 
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp), // declarou o principal
+    HttpClientModule,
+     IonicModule.forRoot(MyApp), // declarou o principal
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,6 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    CategoriaService, // um unico objeto para toda app
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
