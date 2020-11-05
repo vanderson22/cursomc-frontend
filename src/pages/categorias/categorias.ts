@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { API_CONFIG } from '../../config/api.config';
+import { CategoriaDTO } from '../../dominio/categoria.dto';
 import { CategoriaService } from '../../servicos/dominio/categoria.service';
 
 /**
@@ -16,6 +18,8 @@ import { CategoriaService } from '../../servicos/dominio/categoria.service';
 })
 export class CategoriasPage {
 
+      bucketURL: string = API_CONFIG.bucketBaseURL;
+     elementos : CategoriaDTO[];
   constructor(public navCtrl: NavController, public navParams: NavParams
              , public catService: CategoriaService) {
   }
@@ -31,11 +35,13 @@ export class CategoriasPage {
         .subscribe( response  =>  {
               // função anonima que vai ser executada quando der sucesso
              console.log(response);
+             console.log(this.bucketURL);
+             this.elementos= response;
         } ,
         //on error
                      error => {
                         console.log(error);
-                        
+
                      }
         );
 

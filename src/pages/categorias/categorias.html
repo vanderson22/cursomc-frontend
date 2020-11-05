@@ -16,5 +16,19 @@
 </ion-header>
 
 <ion-content padding>
-  <p> Categorias </p>
+     
+  <ion-list>
+    
+      <!--ngFor iterar na collection-->
+      <button ion-item  *ngFor="let elemento of elementos" >    
+      <ion-thumbnail item-start>
+           <!-- recupera a url via interpolação do controlador-->
+        <img src="{{bucketURL}}/cat{{elemento.id}}.jpg">
+      </ion-thumbnail>
+      <h2>{{elemento.nome}}</h2> 
+    </button>
+    
+  </ion-list>
+
+
 </ion-content>
