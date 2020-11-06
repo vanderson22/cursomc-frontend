@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController } from 'ionic-angular';
+import { CredenciaisDTO } from '../../dominio/credencias.dto';
 
 //Para o ionic entender que pode referenciar a classe como string "HomePage"
 @IonicPage()
@@ -13,6 +14,11 @@ import { IonicPage, MenuController, NavController } from 'ionic-angular';
 //Controlador da view home.html
 export class HomePage {
 
+     creds: CredenciaisDTO ={
+        email: "",
+        senha: ""
+     };
+      
   constructor(public navCtrl: NavController  , public meuMenu: MenuController) {
 
   }
@@ -24,6 +30,8 @@ export class HomePage {
      // já estava injetado pois estava no construtor 
        //push -> navegar    
     // Navegação impilhada  this.navCtrl.push('CategoriasPage'); tem um botão de voltar 
+
+     console.log(this.creds);
     this.navCtrl.setRoot('CategoriasPage');
    }
 

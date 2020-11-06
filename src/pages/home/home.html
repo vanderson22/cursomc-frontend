@@ -6,13 +6,13 @@
   <img src="assets/imgs/tela-inicial.png" alt="logo-inicial">
   <form>
       <ion-item>
-        <ion-label>Email: </ion-label>
-        <ion-input type="text"></ion-input>
-
+        <ion-label Stacked>Email: </ion-label>
+        <ion-input [(ngModel)]="creds.email" type="text" name="email" ></ion-input>
+  <!-- [] bind atributo - () bind evento -->>
       </ion-item>
       <ion-item> 
-        <ion-label>Password: </ion-label>
-        <ion-input type="Password"></ion-input>
+        <ion-label Stacked>Password: </ion-label>
+        <ion-input [(ngModel)]="creds.senha"  type="Password" name="senha"></ion-input>
         
      </ion-item>
         <button ion-button (click)="login()">Entrar</button>
