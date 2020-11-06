@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriaService } from '../servicos/dominio/categoria.service';
 import { ERROR_INTERCEPTOR_PROVIDER } from '../interceptors/error-interceptor';
 import { AuthService } from '../servicos/authservice';
+import { StorageService } from '../servicos/storage.service';
 
 
 // Decorator -> Configurações para alterar a classe 
@@ -39,6 +40,7 @@ import { AuthService } from '../servicos/authservice';
     StatusBar,
     SplashScreen,
     ERROR_INTERCEPTOR_PROVIDER,
+    StorageService,
     AuthService,
     CategoriaService, // um unico objeto para toda app
     {provide: ErrorHandler, useClass: IonicErrorHandler}

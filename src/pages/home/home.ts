@@ -34,7 +34,8 @@ export class HomePage {
 
      console.log(this.creds);
      this.auth.autenticar(this.creds)
-        .subscribe(response => console.log(response.headers.get("Authorization")) , 
+     // ao receber a resposta tenta pegar o authHeader para setar no localstorage
+        .subscribe(response => this.auth.loginSucesso(response.headers.get("Authorization")) , 
             error => {} // faz nada on error 
              );
 
