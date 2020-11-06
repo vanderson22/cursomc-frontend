@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../dominio/credencias.dto';
+import { AuthService } from '../../servicos/authservice';
 
 //Para o ionic entender que pode referenciar a classe como string "HomePage"
 @IonicPage()
@@ -19,7 +20,7 @@ export class HomePage {
         senha: ""
      };
       
-  constructor(public navCtrl: NavController  , public meuMenu: MenuController) {
+  constructor(public navCtrl: NavController  , public meuMenu: MenuController, public auth: AuthService) {
 
   }
 
@@ -32,6 +33,11 @@ export class HomePage {
     // Navegação impilhada  this.navCtrl.push('CategoriasPage'); tem um botão de voltar 
 
      console.log(this.creds);
+     this.auth.autenticar(this.creds)
+        .subscribe(response => console.log(response.headers.get("Authorization")) , 
+            error => {} // faz nada on error 
+             );
+
     this.navCtrl.setRoot('CategoriasPage');
    }
 

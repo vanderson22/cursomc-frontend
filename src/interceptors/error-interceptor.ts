@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(  req: HttpRequest<any>,  next: HttpHandler, ): Observable<HttpEvent<any>> {
         return next.handle(req).catch
             ((error , caught) => { 
-                console.log("Error interceptor");
                 let errorObj = error;
                 if (errorObj.error){
                     errorObj = errorObj.error;
@@ -28,7 +27,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if(!errorObj.status){
                     errorObj = JSON.parse(errorObj);
                 }
-
+                console.log("Error interceptor Ativado ->");
+            
                return Observable.throw(errorObj);
             })as any
            }
@@ -40,6 +40,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 export const ERROR_INTERCEPTOR_PROVIDER ={
 
     provide : HTTP_INTERCEPTORS,
-    userClass : ErrorInterceptor,
+    useClass : ErrorInterceptor,
     multi : true,
 };
