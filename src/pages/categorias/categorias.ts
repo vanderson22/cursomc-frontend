@@ -39,11 +39,8 @@ export class CategoriasPage {
              this.elementos= response;
         } ,
         //on error
-                     error => {
-                        console.log(error);
-
-                     }
-        );
+                     error => { }//     o interceptor vai logar                 console.log(error);
+                     );
 
     console.log('ionViewDidLoad - Iniciou a paágina categorias');
 
