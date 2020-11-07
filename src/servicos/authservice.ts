@@ -4,12 +4,14 @@ import { API_CONFIG } from "../config/api.config";
 import { CredenciaisDTO } from "../dominio/credencias.dto";
 import { LocalUser } from "../dominio/local_user";
 import { StorageService } from "./storage.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 
 
 @Injectable()
 export class AuthService {
 
-
+      helper : JwtHelperService = new JwtHelperService();
     constructor(public http: HttpClient , public storageService : StorageService){
 
 
@@ -33,7 +35,9 @@ export class AuthService {
          let splitToken = authHeader.substring(7);
           
          let usuario  : LocalUser = {
-                 token : splitToken
+                 token : splitToken,
+                 email  :  this.helper.decodeToken(splitToken).sub,
+                 
          } ;
         
           this.storageService.setLocalUser(usuario);

@@ -26,6 +26,7 @@ export class StorageService {
         if(user == null)
             localStorage.removeItem(STORAGE_KEYS.localUser)
          else   
+            // armazenar o objeto que contém o token 
              localStorage.setItem(STORAGE_KEYS.localUser,  JSON.stringify(user));
       
     }
