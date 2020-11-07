@@ -7,6 +7,7 @@
 
   <ion-content>
     <ion-list>
+      <!-- p é o elemento e pages é um arrays de objetos de páginas -->
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
