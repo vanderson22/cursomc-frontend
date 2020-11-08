@@ -16,6 +16,13 @@
 </ion-header>
 
 <ion-content padding>
+ 
+        <h5>
+          <ion-item>Email  : {{cliente?.email}}</ion-item>
+          <ion-item>Usuário: {{cliente?.nome}}</ion-item>
+        </h5>
 
-        <h5><ion-item>{{email}}</ion-item></h5>
+        <ion-avatar item-start>
+          <img class="circle" [src]="cliente?.imageURL || 'assets/imgs/avatar-blank.png'">
+        </ion-avatar>
 </ion-content>

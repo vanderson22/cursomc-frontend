@@ -15,6 +15,7 @@ import { CategoriaService } from '../servicos/dominio/categoria.service';
 import { ERROR_INTERCEPTOR_PROVIDER } from '../interceptors/error-interceptor';
 import { AuthService } from '../servicos/authservice';
 import { StorageService } from '../servicos/storage.service';
+import { ClienteService } from '../servicos/dominio/cliente.service';
 
 
 // Decorator -> Configurações para alterar a classe 
@@ -40,6 +41,7 @@ import { StorageService } from '../servicos/storage.service';
     StatusBar,
     SplashScreen,
     ERROR_INTERCEPTOR_PROVIDER,
+    ClienteService,
     StorageService,
     AuthService,
     CategoriaService, // um unico objeto para toda app
