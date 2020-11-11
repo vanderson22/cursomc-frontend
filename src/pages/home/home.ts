@@ -35,11 +35,22 @@ export class HomePage {
      console.log(this.creds);
      this.auth.autenticar(this.creds)
      // ao receber a resposta tenta pegar o authHeader para setar no localstorage
-        .subscribe(response => this.auth.loginSucesso(response.headers.get("Authorization")) , 
-            error => {} // faz nada on error 
+        .subscribe(response => { 
+           this.auth.loginSucesso(response.headers.get("Authorization")) 
+           this.navCtrl.setRoot('CategoriasPage');
+        }, 
+            error => {
+
+               if(error.status == 403){
+                  console.log("Error 403 detectado");
+                  this.navCtrl.setRoot('HomePage');
+
+                } 
+
+            } // faz nada on error 
              );
 
-    this.navCtrl.setRoot('CategoriasPage');
+   
    }
 
    ionViewWillEnter(){

@@ -16,6 +16,7 @@ import { ERROR_INTERCEPTOR_PROVIDER } from '../interceptors/error-interceptor';
 import { AuthService } from '../servicos/authservice';
 import { StorageService } from '../servicos/storage.service';
 import { ClienteService } from '../servicos/dominio/cliente.service';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 
 
 // Decorator -> Configurações para alterar a classe 
@@ -40,6 +41,7 @@ import { ClienteService } from '../servicos/dominio/cliente.service';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthInterceptorProvider,
     ERROR_INTERCEPTOR_PROVIDER,
     ClienteService,
     StorageService,

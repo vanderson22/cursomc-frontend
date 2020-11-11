@@ -11,9 +11,13 @@ import {
  HttpRequest,
 } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StorageService } from '../servicos/storage.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+    
+    constructor(public storage : StorageService){}
+
     
     // método que intercepta a requisição e pega se houver erro
     intercept(  req: HttpRequest<any>,  next: HttpHandler, ): Observable<HttpEvent<any>> {
@@ -29,9 +33,22 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 console.log(`Error interceptor Ativado  ${JSON.stringify(errorObj)}` );
             
+                console.log(errorObj);
+                console.log(`Status caputado ${errorObj.status}`);
+                switch(errorObj.status){
+                     case 403:  this.tratarErros403();
+                             break;
+                }
                return Observable.throw(errorObj);
             })as any
            }
+
+
+       // Trata os erros 403.
+           
+        tratarErros403() {
+             this.storage.setLocalUser(null);
+        }    
 
 }
 

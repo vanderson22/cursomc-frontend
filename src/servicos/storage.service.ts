@@ -22,7 +22,7 @@ export class StorageService {
     // seta o token do usuário no localStorage
     setLocalUser(user : LocalUser){
      // passar user null é pq deve ser removido
-       console.log(`Local user ${user}`);
+       console.log(`Local user foi setado para :  ${user}`);
         if(user == null)
             localStorage.removeItem(STORAGE_KEYS.localUser)
          else   

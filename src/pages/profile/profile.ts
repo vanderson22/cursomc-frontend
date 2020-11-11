@@ -30,7 +30,7 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('Start ionViewDidLoad ProfilePage');
          let user = this.storage.getLocalUser();
-          if(user && user.email != null)
+          if(user && user.email != null){ 
                   this.service.findByEmail(user.email)
                   // on success 
                     .subscribe( response =>   { 
@@ -40,8 +40,17 @@ export class ProfilePage {
                        this.getImageIfExists();
                       }
                       // on error 
-                       , error => {});
+                       , error => {
+                          // se Ocorrer erro manda para home page.
+                          if(error.status == 403)
+                            this.navCtrl.setRoot('HomePage');
 
+                       });
+                      } else {
+                            // se o usuário nulo também vai para homePage
+                            this.navCtrl.setRoot('HomePage');
+
+                      }   
         
                       
     console.log('ionViewDidLoad ProfilePage End ')
