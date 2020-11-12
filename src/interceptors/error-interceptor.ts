@@ -5,58 +5,92 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import {
- HttpEvent,
- HttpInterceptor,
- HttpHandler,
- HttpRequest,
+    HttpEvent,
+    HttpInterceptor,
+    HttpHandler,
+    HttpRequest,
 } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from '../servicos/storage.service';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    
-    constructor(public storage : StorageService){}
 
-    
+    constructor(public storage: StorageService,
+        public alertCtrl: AlertController) { }
+
+
     // método que intercepta a requisição e pega se houver erro
-    intercept(  req: HttpRequest<any>,  next: HttpHandler, ): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>> {
         return next.handle(req).catch
-            ((error , caught) => { 
+            ((error, caught) => {
                 let errorObj = error;
-                if (errorObj.error){
+                if (errorObj.error) {
                     errorObj = errorObj.error;
                 }
-// se nao tem status não é formato json
-                if(!errorObj.status){
+                // se nao tem status não é formato json
+                if (!errorObj.status) {
                     errorObj = JSON.parse(errorObj);
                 }
-                console.log(`Error interceptor Ativado  ${JSON.stringify(errorObj)}` );
-            
+                console.log(`Error interceptor Ativado  ${JSON.stringify(errorObj)}`);
+
                 console.log(errorObj);
                 console.log(`Status caputado ${errorObj.status}`);
-                switch(errorObj.status){
-                     case 403:  this.tratarErros403();
-                             break;
+                switch (errorObj.status) {
+                    case 401: this.tratarErros401();
+                        break;
+                    case 403: this.tratarErros403();
+                        break;
+                    default: this.tratarErrosAleatorios(errorObj);
+                        break;
                 }
-               return Observable.throw(errorObj);
-            })as any
-           }
+                return Observable.throw(errorObj);
+            }) as any
+    }
+    tratarErrosAleatorios(errorObj: any) {
+        let alert = this.alertCtrl.create({
+            message:  errorObj.message,
+            // title   : "Erro 401 - Falha na autenticação",
+            title: "Error : " + errorObj.status + " : " + errorObj.error,
+            enableBackdropDismiss: false, // usuário é  obrigado a tocar no botão
+            buttons: [{
+                text: "Ok"
+            }]
+        });
+        // mostrar o alerta !
+        alert.present();
+
+    }
+
+ 
 
 
-       // Trata os erros 403.
-           
-        tratarErros403() {
-             this.storage.setLocalUser(null);
-        }    
+    tratarErros401() {
+        let alert = this.alertCtrl.create({
+            message: "Email ou senhas incorretos",
+            // title   : "Erro 401 - Falha na autenticação",
+            title: "Falha de autenticação",
+            enableBackdropDismiss: false, // usuário é  obrigado a tocar no botão
+            buttons: [{
+                text: "Ok"
+            }]
+        });
+        // mostrar o alerta !
+        alert.present();
+    }
+    // Trata os erros 403.      
+    tratarErros403() {
+        this.storage.setLocalUser(null);
+    }
 
 }
 
 //exigências do framework para rodar  o interceptor
 // Registrar nos providers da APP em app.module.ts
-export const ERROR_INTERCEPTOR_PROVIDER ={
+export const ERROR_INTERCEPTOR_PROVIDER = {
 
-    provide : HTTP_INTERCEPTORS,
-    useClass : ErrorInterceptor,
-    multi : true,
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true,
 };

@@ -29,7 +29,20 @@ export class AuthService {
             }) ;
      }
 
-     //Armazena 
+
+     refreshToken( ){
+        // retorna observable<any>
+        console.log(`${API_CONFIG.baseUrl}/auth/refresh_token`);
+    
+    return   this.http.post(`${API_CONFIG.baseUrl}/auth/refresh_token`,
+         {}, // envia um objetoVazio
+        {
+            observe: 'response', // pegar o responseHeader
+            responseType: 'text'  // não fazer parse em json pois tem corpo vazio.
+        }) ;
+ }
+
+     //Armazena o usuário recuperado no local storage
      loginSucesso(authHeader: string){
                   // Para remover Bearer "token"
         console.log(`Token recuperado ${authHeader}`);

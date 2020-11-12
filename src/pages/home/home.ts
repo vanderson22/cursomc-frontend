@@ -39,20 +39,24 @@ export class HomePage {
            this.auth.loginSucesso(response.headers.get("Authorization")) 
            this.navCtrl.setRoot('CategoriasPage');
         }, 
-            error => {
-
-               if(error.status == 403){
-                  console.log("Error 403 detectado");
-                  this.navCtrl.setRoot('HomePage');
-
-                } 
-
-            } // faz nada on error 
+            error => {  } // faz nada on error 
              );
 
    
    }
 
+    ionViewDidEnter(){
+
+      this.auth.refreshToken()
+      // ao receber a resposta tenta pegar o authHeader para setar no localstorage
+         .subscribe(response => { 
+            this.auth.loginSucesso(response.headers.get("Authorization")) 
+            this.navCtrl.setRoot('CategoriasPage');
+         }, 
+             error => {  } // faz nada on error 
+              );
+
+    }
    ionViewWillEnter(){
     console.log('ionViewWillEnter - Entrando na paágina categorias');
     this.meuMenu.swipeEnable(false);
