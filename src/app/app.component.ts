@@ -2,10 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CategoriasPage } from '../pages/categorias/categorias';
-import { ProfilePage } from '../pages/profile/profile';
+
 import { AuthService } from '../servicos/authservice';
-import { Console } from '@angular/core/src/console';
 
 // não precisa mais pois na Linha 19 foi referenciado string import { HomePage } from '../pages/home/home';
 //import { ListPage } from '../pages/list/list';
@@ -37,6 +35,7 @@ export class MyApp {
       { title: 'Categorias', component: 'CategoriasPage' },
       { title: 'Profile', component: 'ProfilePage' },
       { title: 'Logout', component: '' },
+
     ];
 
   }
@@ -58,11 +57,11 @@ export class MyApp {
 
       case "Logout": {
         this.authservice.logout();
-         console.log("Direcionando para home Page"); 
-         this.nav.setRoot("HomePage");
+        console.log("Direcionando para home Page");
+        this.nav.setRoot("HomePage");
       }
         break;
-       default: this.nav.setRoot(page.component);
+      default: this.nav.setRoot(page.component);
     }
 
   }

@@ -75,7 +75,10 @@ export class HomePage {
       }
 
     }
-
+  
+   registrar(){
+        this.navCtrl.push("RegistrarPage");
+   }
 
    ionViewWillEnter(){
     console.log('ionViewWillEnter - Entrando na paágina categorias');
