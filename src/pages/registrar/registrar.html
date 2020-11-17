@@ -11,26 +11,26 @@
 </ion-header>
 
 
-<!-- preventDefault é para inibir o comportamento padrão-->
+<!-- preventDefault é para inibir o comportamento padrão formGroup é o nome da variavel e faz binding com formControlName§-->
 <ion-content padding>
-  <form (ngSubmit)="registrar();$event.stopPropagation()">
+  <form [formGroup]="formGroup" (ngSubmit)="registrar();">
 
     <ion-item>
       <ion-label stacked> Nome* </ion-label>
-      <ion-input [(ngModel)]="nome"  name="nome" type="text"> </ion-input>
+      <ion-input formControlName="nome" type="text"> </ion-input>
 
     </ion-item>
 
     <ion-item>
       <ion-label stacked> Email* </ion-label>
-      <ion-input [(ngModel)]="email" name="email" type="text"> </ion-input>
+      <ion-input formControlName="email" type="text"> </ion-input>
 
     </ion-item>
 
 
-    
+
     <ion-item>
-      <ion-list radio-group [(ngModel)]="tipo"  name="tipo">
+      <ion-list radio-group   formControlName="tipo">
 
         <ion-list-header>
           Tipo cliente*
@@ -38,7 +38,7 @@
 
 
         <ion-item>
-             
+
           <ion-radio checked="true" value="1"></ion-radio>
         </ion-item>
         <ion-item>
@@ -50,70 +50,71 @@
 
     <ion-item>
       <ion-label stacked>cpf ou cnpj*</ion-label>
-      <ion-input [(ngModel)]="cpfCnpj"  name="cpfCnpj" type="text"> </ion-input>
+      <ion-input  formControlName="cpfCnpj" type="text"> </ion-input>
     </ion-item>
 
 
     <ion-item>
       <ion-label stacked>senha*</ion-label>
-      <ion-input [(ngModel)]="senha"  name="senha" type="password"> </ion-input>
+      <ion-input  formControlName="senha" type="password"> </ion-input>
     </ion-item>
 
 
     <ion-item>
       <ion-label stacked>logradouro*</ion-label>
-      <ion-input [(ngModel)]="logradouro" name="logradouro" type="text"> </ion-input>
+      <ion-input  formControlName="logradouro" type="text"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>numero*</ion-label>
-      <ion-input [(ngModel)]="numero" name="numero" type="text"> </ion-input>
+      <ion-input  formControlName="numero" type="text"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>complemento</ion-label>
-      <ion-input [(ngModel)]="complemento" name="complemento" type="text"> </ion-input>
+      <ion-input    formControlName="complemento" type="text"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>bairro*</ion-label>
-      <ion-input [(ngModel)]="bairro" name="bairro" type="text"> </ion-input>
+      <ion-input  formControlName="bairro" type="text"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>cep*</ion-label>
-      <ion-input [(ngModel)]="cep" name="cep"  name="cep" type="text"> </ion-input>
+      <ion-input  formControlName="cep" name="cep" type="text"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Estado*</ion-label>
-       <ion-select [(ngModel)]="estadoId" name="estadoId" (ionChange) = "updateEstados()">
-            <ion-option value="1" >Minas Gerais</ion-option>
-            <ion-option value="2" >São Paulo</ion-option> <!--Temporários-->
-       </ion-select>
+      <ion-select  formControlName="estadoId" (ionChange)="updateCidades()" >
+        <ion-option *ngFor="let estado of estados; first as f" [value]="estado.id" [selected]= "f">{{estado.nome}}</ion-option>
+       
+        <!--Temporários-->
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Cidade*</ion-label>
-      <ion-select [(ngModel)]="cidadeId"  name="cidadeId" (ionChange) = "updateCidades()">
-        <ion-option value="1" >Minas Gerais</ion-option>
-        <ion-option value="2" >São Paulo</ion-option> <!--Temporários-->
-   </ion-select>
+      <ion-select  formControlName="cidadeId" >
+        <ion-option  *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.nome}}</ion-option>
+        <!--Temporários-->
+      </ion-select>
     </ion-item>
- 
+
     <ion-item>
-    <ion-label stacked>Telefone1*</ion-label>
-    <ion-input [(ngModel)]="telefone1"  name="telefone1" type="text"> </ion-input>
-  </ion-item>
+      <ion-label stacked>Telefone1*</ion-label>
+      <ion-input   formControlName="telefone1" type="text"> </ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Telefone2</ion-label>
-    <ion-input [(ngModel)]="telefone2"  name="telefone2" type="text"> </ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label stacked>Telefone2</ion-label>
+      <ion-input  formControlName="telefone2" type="text"> </ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Telefone3</ion-label>
-    <ion-input  [(ngModel)]="telefone3"  name="telefon3" type="text"> </ion-input>
-  </ion-item>
-  <button ion-button type="submit" > Registrar</button>
+    <ion-item>
+      <ion-label stacked>Telefone3</ion-label>
+      <ion-input   formControlName="telefone3" type="text"> </ion-input>
+    </ion-item>
+    <button ion-button type="submit"> Registrar</button>
   </form>
 </ion-content>
