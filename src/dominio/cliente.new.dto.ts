@@ -19,6 +19,6 @@ export interface ClienteNewDTO {
     telefone2: string;
     telefone3: string;
 
-    constructor()
+    constructor():ClienteNewDTO;
 
 }

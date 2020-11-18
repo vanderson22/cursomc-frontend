@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CidadeDTO } from '../../dominio/cidade.dto';
 import { EstadoDTO } from '../../dominio/estado.dto';
 import { CidadeService } from '../../servicos/dominio/cidade.service';
+import { ClienteService } from '../../servicos/dominio/cliente.service';
 import { EstadoService } from '../../servicos/dominio/estado.service';
 
 /**
@@ -30,24 +31,26 @@ export class RegistrarPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public cidadeService : CidadeService,
-    public estadoService : EstadoService) {
+    public estadoService : EstadoService,
+    public clienteService : ClienteService,
+    public alertCtrl : AlertController) {
 
 
     // instanciar formGroup
     this.formGroup = this.formBuilder.group({
-      nome: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(120)]], // um valor default iniciar & uma lista de  Validators!
-      email: ["", [Validators.email, Validators.required]],
-      cpfCnpj: ["" , [Validators.required]],
-      senha: [""],
-      tipo: [""],
-      logradouro: [""],
-      numero: [""],
-      complemento: [""],
-      bairro: [""],
-      cep: [""],
-      cidadeId: [""],
-      estadoId: [""],
-      telefone1: [""],
+      nome: ["Administrador", [Validators.required, Validators.minLength(3), Validators.maxLength(120)]], // um valor default iniciar & uma lista de  Validators!
+      email: ["administrador@mail.com", [Validators.email, Validators.required]],
+      cpfCnpj: ["002003001-31" , [Validators.required , Validators.minLength(11),Validators.maxLength(14), ]],
+      senha: ["12345"],
+      tipo: ["1" ,Validators.required  ], // PF Como default
+      logradouro: ["Rua igp"],
+      numero: ["3333"],
+      complemento: ["bloco 20 apto 10"],
+      bairro: ["Jacarépagua"],
+      cep: ["22780098" , [Validators.required]],
+      cidadeId: ["2s"],
+      estadoId: ["1"],
+      telefone1: ["123123123" , [Validators.required ]],
       telefone2: [""],
       telefone3: [""],
     }
@@ -70,11 +73,33 @@ export class RegistrarPage {
      }, 
      error =>{ });
   }
-
+ 
+   /***
+    * 
+    *  formGroup.value  contém todos os valoes
+   */
   registrar() {
-    console.log('[registrar] RegistrarPage');
-    this.navCtrl.setRoot("HomePage");
+    console.log('[registrar] Registar cliente ->') 
+    console.log(this.formGroup.value);
+   // this.navCtrl.setRoot("HomePage");
+     this.clienteService.criar(this.formGroup.value)
+          .subscribe( response => {
+        
+                     this.showInsertOK();
+                   }, error => {  });
+  }
+  showInsertOK() {
+      let alert = this.alertCtrl.create({
+        message : "Usuario criado com sucesso",
+        title : "Bem-Vindo!" + this.formGroup.value.nome , 
+        enableBackdropDismiss : false,
+        buttons : [{
+             text : "OK",
+             handler : () => {this.navCtrl.setRoot("HomePage") }, 
+        }]
+      });
 
+       alert.present();
   }
 
   /***

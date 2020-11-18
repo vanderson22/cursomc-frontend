@@ -13,6 +13,7 @@ import {
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from '../servicos/storage.service';
 import { AlertController } from 'ionic-angular';
+import { FieldMessage } from '../dominio/fieldMessage';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -42,15 +43,46 @@ export class ErrorInterceptor implements HttpInterceptor {
                         break;
                     case 403: this.tratarErros403();
                         break;
+                    case 422: this.tratarErros422(errorObj);
+                        break;
                     default: this.tratarErrosAleatorios(errorObj);
                         break;
                 }
                 return Observable.throw(errorObj);
             }) as any
     }
+    tratarErros422(errorObj: any) {
+        let alert = this.alertCtrl.create({
+            message: this.listarErros(errorObj.errors),
+            subTitle: "código http: " + errorObj.status,
+            title: errorObj.error,
+            enableBackdropDismiss: false, // usuário é  obrigado a tocar no botão
+            buttons: [{
+                text: "Ok"
+            }]
+        });
+        // mostrar o alerta !
+        alert.present();
+
+
+    }
+    /*
+     *  
+     *  Retorna uma lista de erros formata como html
+     **/
+    listarErros(fieldMessages: FieldMessage[]): string {
+        let s = "";
+
+        fieldMessages.forEach(fieldMessage => {
+            s += "<p style=' color: red; padding-top: 0.2rem;'>Campo inválido: "
+                  + fieldMessage.campo + " </p> Erro: " + fieldMessage.mensagem;
+        });
+
+        return s;
+    }
     tratarErrosAleatorios(errorObj: any) {
         let alert = this.alertCtrl.create({
-            message:  errorObj.message,
+            message: errorObj.message,
             // title   : "Erro 401 - Falha na autenticação",
             title: "Error : " + errorObj.status + " : " + errorObj.error,
             enableBackdropDismiss: false, // usuário é  obrigado a tocar no botão
@@ -63,7 +95,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     }
 
- 
+
+
+
 
 
     tratarErros401() {
