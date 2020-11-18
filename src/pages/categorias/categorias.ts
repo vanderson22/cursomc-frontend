@@ -46,9 +46,13 @@ export class CategoriasPage {
 
   }
 
-
-  mostrarProdutos() {
-    this.navCtrl.push("ProdutosPage")
+/**
+ * 
+ *  Mostrar produtos pela categoria 
+*/
+  mostrarProdutos(categoria_id : string) {
+    this.navCtrl.push("ProdutosPage" , {categoria_id : categoria_id});
+     // passando parâmetro e o nome dele 
       ;
   }
 
