@@ -20,7 +20,7 @@
   <ion-list>
     
       <!--ngFor iterar na collection-->
-      <button ion-item  *ngFor="let elemento of elementos" >    
+      <button ion-item  *ngFor="let elemento of elementos" (click) = "mostrarProdutos()">    
       <ion-thumbnail item-start>
            <!-- recupera a url via interpolação do controlador-->
         <img src="{{bucketURL}}/cat{{elemento.id}}.jpg">

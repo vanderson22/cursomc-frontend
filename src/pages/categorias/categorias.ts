@@ -18,10 +18,10 @@ import { CategoriaService } from '../../servicos/dominio/categoria.service';
 })
 export class CategoriasPage {
 
-      bucketURL: string = API_CONFIG.bucketBaseURL;
-     elementos : CategoriaDTO[];
+  bucketURL: string = API_CONFIG.bucketBaseURL;
+  elementos: CategoriaDTO[];
   constructor(public navCtrl: NavController, public navParams: NavParams
-             , public catService: CategoriaService) {
+    , public catService: CategoriaService) {
   }
 
 
@@ -29,26 +29,31 @@ export class CategoriasPage {
   //ciclo de vida da página
   //
   ionViewDidLoad() {
-     
-     //assyncrono .subscribe -- callback
+
+    //assyncrono .subscribe -- callback
     this.catService.findAll()
-        .subscribe( response  =>  {
-              // função anonima que vai ser executada quando der sucesso
-             console.log(response);
-             console.log(this.bucketURL);
-             this.elementos= response;
-        } ,
+      .subscribe(response => {
+        // função anonima que vai ser executada quando der sucesso
+        console.log(response);
+        console.log(this.bucketURL);
+        this.elementos = response;
+      },
         //on error
-                     error => { }//     o interceptor vai logar                 console.log(error);
-                     );
+        error => { }//     o interceptor vai logar                 console.log(error);
+      );
 
     console.log('ionViewDidLoad - Iniciou a paágina categorias');
 
-
   }
-    
 
-      
-     
-    
+
+  mostrarProdutos() {
+    this.navCtrl.push("ProdutosPage")
+      ;
+  }
+
+
+
+
+
 }
