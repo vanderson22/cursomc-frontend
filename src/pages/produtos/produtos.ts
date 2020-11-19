@@ -45,8 +45,6 @@ export class ProdutosPage {
    * 
    * **/
   imageExists() {
-      
-     
     this.produtos.forEach(produto => {
       // verificando se o produto existe
       console.log( produto);
@@ -58,6 +56,13 @@ export class ProdutosPage {
         , error => { });
     });
 
-
   }
+  
+    detalheProduto(produto : ProdutoDTO) {
+       this.navCtrl.push("ProdutoDetalhesPage" , {produto : produto});
+    }
+
+
+
+
 }

@@ -18,6 +18,7 @@ import { StorageService } from '../servicos/storage.service';
 import { ClienteService } from '../servicos/dominio/cliente.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ProdutoService } from '../servicos/dominio/produto.service';
+import { CarrinhoService } from '../servicos/dominio/carrinho.service';
 
 
 // Decorator -> Configurações para alterar a classe 
@@ -46,6 +47,7 @@ import { ProdutoService } from '../servicos/dominio/produto.service';
     ERROR_INTERCEPTOR_PROVIDER,
     ClienteService,
     StorageService,
+    CarrinhoService,
     AuthService,
     CategoriaService, // um unico objeto para toda app
     ProdutoService , 

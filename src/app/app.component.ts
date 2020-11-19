@@ -33,6 +33,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: 'HomePage' },
       { title: 'Categorias', component: 'CategoriasPage' },
+      { title: 'Carrinho', component: 'CarrinhoPage' },
       { title: 'Profile', component: 'ProfilePage' },
       { title: 'Logout', component: '' },
 

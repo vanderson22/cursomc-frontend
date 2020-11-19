@@ -4,10 +4,21 @@
   </ion-navbar>
 </ion-header>
 
+<ion-header>
+  <ion-navbar> 
+    <button ion-button menuToggle> 
+       <!-- https://ionicframework.com/docs/v3/components/#icons -->
+       <ion-icon name="menu" ></ion-icon>
+
+    </button>
+    <ion-title>Categorias</ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content padding>
 
   <ion-list>
-    <button ion-item *ngFor="let p of produtos">
+    <button ion-item *ngFor="let p of produtos" (click) = "detalheProduto(p)" >
       <ion-thumbnail item-start>
         <!--Quando houver url que não existe no bucket vai dar erro no browser e puxar a imagem de assets-->
         <img [src]="p?.imageURL || 'assets/imgs/prod.jpg'">

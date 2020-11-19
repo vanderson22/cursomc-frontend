@@ -2,5 +2,6 @@
 
 
 export const STORAGE_KEYS = {
-    localUser : "localUser"
+    localUser : "localUser",
+    carrinho : "carrinho",
 }
