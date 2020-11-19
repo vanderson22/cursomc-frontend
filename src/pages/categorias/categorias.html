@@ -5,10 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar> 
-    <button ion-button menuToggle> 
-       <!-- https://ionicframework.com/docs/v3/components/#icons -->
-       <ion-icon name="menu" ></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <!-- https://ionicframework.com/docs/v3/components/#icons -->
+      <ion-icon name="menu"></ion-icon>
 
     </button>
     <ion-title>Categorias</ion-title>
@@ -16,18 +16,23 @@
 </ion-header>
 
 <ion-content padding>
-     
+  <!-- iTEM DE NAVEGAÇÃO POR BOTÃO-->
+  <ion-fab top right edde>
+    <button navPush="CarrinhoPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
-    
-      <!--ngFor iterar na collection passsando parâmetros na navegação-->
-      <button ion-item  *ngFor="let elemento of elementos" (click) = "mostrarProdutos(elemento.id)">    
+
+    <!--ngFor iterar na collection passsando parâmetros na navegação-->
+    <button ion-item *ngFor="let elemento of elementos" (click)="mostrarProdutos(elemento.id)">
       <ion-thumbnail item-start>
-           <!-- recupera a url via interpolação do controlador-->
+        <!-- recupera a url via interpolação do controlador-->
         <img src="{{bucketURL}}/cat{{elemento.id}}.jpg">
       </ion-thumbnail>
-      <h2>{{elemento.nome}}</h2> 
+      <h2>{{elemento.nome}}</h2>
     </button>
-    
+
   </ion-list>
 
 

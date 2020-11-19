@@ -1,14 +1,4 @@
-<!--
-  Generated template for the ProdutoDetalhesPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>ProdutoDetalhes</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-header>
   <ion-navbar> 
@@ -17,12 +7,17 @@
        <ion-icon name="menu" ></ion-icon>
 
     </button>
-    <ion-title>Categorias</ion-title>
+    <ion-title>Produtos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+ <!-- iTEM DE NAVEGAÇÃO POR BOTÃO-->
+ <ion-fab top right edde>
+  <button navPush="CarrinhoPage" ion-fab mini>
+    <ion-icon name="cart"></ion-icon>
+  </button>
+</ion-fab>
   <ion-card>
 
     <img [src]="produto?.imageURL || 'assets/imgs/prod.jpg'">

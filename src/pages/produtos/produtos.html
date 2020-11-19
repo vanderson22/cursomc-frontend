@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>produtos</ion-title>
-  </ion-navbar>
-</ion-header>
+
 
 <ion-header>
   <ion-navbar> 
@@ -11,11 +7,17 @@
        <ion-icon name="menu" ></ion-icon>
 
     </button>
-    <ion-title>Categorias</ion-title>
+    <ion-title>Produtos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+   <!-- iTEM DE NAVEGAÇÃO POR BOTÃO-->
+   <ion-fab top right edde>
+    <button navPush="CarrinhoPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
 
   <ion-list>
     <button ion-item *ngFor="let p of produtos" (click) = "detalheProduto(p)" >
