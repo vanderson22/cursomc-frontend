@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 import { API_CONFIG } from "../config/api.config";
 import { CredenciaisDTO } from "../dominio/credencias.dto";
 import { LocalUser } from "../dominio/local_user";
+import { CarrinhoService } from "./dominio/carrinho.service";
 import { StorageService } from "./storage.service";
 
 
@@ -14,7 +15,9 @@ import { StorageService } from "./storage.service";
 export class AuthService {
 
     helper: JwtHelper = new JwtHelper();
-    constructor(public http: HttpClient, public storageService: StorageService) {
+    constructor(public http: HttpClient,
+                public storageService: StorageService,
+                public carrinhoService : CarrinhoService) {
 
 
     }
@@ -53,6 +56,8 @@ export class AuthService {
         };
 
         this.storageService.setLocalUser(usuario);
+       // LIMPAR CARRINHO!
+        this.carrinhoService.getCarrinho();
         console.log(this.storageService.getLocalUser());
     }
 
