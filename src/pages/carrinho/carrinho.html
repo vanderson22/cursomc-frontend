@@ -32,6 +32,7 @@
     </ion-item>
     <ion-item *ngIf="total()> 0">
       <h1>Total : {{total()}}</h1>
+       
     </ion-item>
      <!-- ELSE-->
     <ion-item *ngIf="total() == 0">
@@ -40,5 +41,6 @@
   </ion-list>
 
   <button ion-button (click)="continuarComprando()">Continuar Comprando</button>
+  <button ion-button (click)="finalizarPedido()" color="secondary">Finalizar Pedido</button>
 
 </ion-content>

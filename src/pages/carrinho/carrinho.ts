@@ -63,6 +63,10 @@ export class CarrinhoPage {
       this.navCtrl.setRoot("CategoriasPage");
   }
 
+  finalizarPedido(){
+    this.navCtrl.setRoot("EnderecoPage");
+}
+
   /***
    *    Carrega a imagem do produto se existir
    * 
