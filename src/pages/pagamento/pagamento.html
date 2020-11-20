@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <!-- https://ionicframework.com/docs/v3/components/#icons -->
+      <ion-icon name="menu"></ion-icon>
+
+    </button>
+    <ion-title>Forma de pagamento</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+
+  <form [formGroup]="form" (ngSubmit)="proximaPagina();">
+    <ion-list radio-group formControlName="@type">
+
+      <ion-list-header>
+        Tipo Pagamento*
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Pagamento Boleto</ion-label>
+        <ion-radio checked="true" value="pagamentoBoleto"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pagamento Cartão</ion-label>
+        <ion-radio checked="true" value="pagamentoCartao"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+    
+
+    <!-- pegou dinâmica o valor selecionado no campo anterior!!!-->
+    <ion-item *ngIf="form.value['@type'] == 'pagamentoCartao'">
+      <ion-select formControlName="numeroParcelas">
+        <ion-option *ngFor="let p of parcelas; first as f " [value]="p" [selected]="f">{{p}}</ion-option>
+      </ion-select>
+    </ion-item>
+     
+    <button ion-button type="submit" [disabled]="form.invalid">Próximo</button>
+  </form>
+
+</ion-content>

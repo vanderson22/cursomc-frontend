@@ -14,10 +14,10 @@ export class ClienteService {
 
    constructor(public http: HttpClient, public storage: StorageService) { }
 
-   findByEmail(email: string): Observable<ClienteDTO> {
+   findByEmail(email: string): Observable<any> {
       //           let token =  this.storage.getLocalUser().token;
       // Não precisa mais incluir o header o interceptor fará esse papel  let authHeader = new HttpHeaders({'Authorization' : 'Bearer ' + token});
-      return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?email=${email}`);
+      return this.http.get<any>(`${API_CONFIG.baseUrl}/clientes/email?email=${email}`);
       //,
       //   {'headers' : authHeader}); // inclusão do header authorization na requisiçã0o
    }

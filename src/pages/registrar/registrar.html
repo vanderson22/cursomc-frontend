@@ -20,34 +20,34 @@
       <ion-input formControlName="nome" type="text"> </ion-input>
       <!-- Para mostrar os erros de validação-->
     </ion-item>
-    <p  class="invalido"  *ngIf="formGroup.controls.nome.errors && formGroup.controls['nome'].dirty" margin-left>
+    <p class="invalido" *ngIf="formGroup.controls.nome.errors && formGroup.controls['nome'].dirty" margin-left>
       Valor inválido
     </p>
     <ion-item>
       <ion-label stacked> Email* </ion-label>
       <ion-input formControlName="email" type="text"> </ion-input>
     </ion-item>
-    <p  class="invalido"  *ngIf="formGroup.controls.email.errors && formGroup.controls['email'].dirty" margin-left>
+    <p class="invalido" *ngIf="formGroup.controls.email.errors && formGroup.controls['email'].dirty" margin-left>
       Valor inválido
     </p>
 
-    <ion-item>
-      <ion-list radio-group formControlName="tipo">
+    <ion-list radio-group formControlName="tipo">
 
-        <ion-list-header>
-          Tipo cliente*
-        </ion-list-header>
-        <ion-item>
-          <ion-radio checked="true" value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
+      <ion-list-header>
+        Tipo Pessoa*
+      </ion-list-header>
+      <ion-item>
+        <ion-label  >Pessoa Física</ion-label>
+        <ion-radio  checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pessoa Jurídica</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
 
-      </ion-list>
-    </ion-item>
+    </ion-list>
 
-    <p  class="invalido"  *ngIf="formGroup.controls.tipo.errors && formGroup.controls['tipo'].dirty" margin-left>
+    <p class="invalido" *ngIf="formGroup.controls.tipo.errors && formGroup.controls['tipo'].dirty" margin-left>
       Valor inválido
     </p>
 
@@ -57,7 +57,7 @@
       <ion-label stacked>cpf ou cnpj*</ion-label>
       <ion-input formControlName="cpfCnpj" type="text"> </ion-input>
     </ion-item>
- <p  class="invalido"  *ngIf="formGroup.controls.cpfCnpj.errors && formGroup.controls['cpfCnpj'].dirty" margin-left>
+    <p class="invalido" *ngIf="formGroup.controls.cpfCnpj.errors && formGroup.controls['cpfCnpj'].dirty" margin-left>
       Valor inválido - Mínimo 11 máximo 14
     </p>
 
@@ -124,6 +124,6 @@
       <ion-input formControlName="telefone3" type="text"> </ion-input>
     </ion-item>
     <button ion-button type="submit" [disabled]="formGroup.invalid"> Registrar</button>
-     <!-- DESABILITAR O BOTÃO SE INVÁLIDO-->
+    <!-- DESABILITAR O BOTÃO SE INVÁLIDO-->
   </form>
 </ion-content>

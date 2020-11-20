@@ -6,7 +6,7 @@
       <ion-icon name="menu"></ion-icon>
 
     </button>
-    <ion-title>Fechamento de pedido - Endereço</ion-title>
+    <ion-title>Fechamento de pedido</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
     <ion-list-header>
       Selecione um endereço
     </ion-list-header>
-    <button ion-item *ngFor="let item of items">
+    <button (click)="proximaPagina(item)" ion-item *ngFor="let item of items">
       <h2>{{item.logradouro}} , {{item.numero}} </h2>
       <p>{{item.complemento}} {{item.bairro}} CEP {{item.cep}} </p>
       <p>{{item.cidade.nome}} , {{item.cidade.estado.nome}} </p>
