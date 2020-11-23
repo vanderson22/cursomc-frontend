@@ -73,22 +73,34 @@ export class ConfirmacaoPedidoPage {
   }
 
   home() {
-      this.navCtrl.setRoot("CarrinhoPage")
+    this.navCtrl.setRoot("CarrinhoPage")
   }
 
   /**
    * Registrar o pedido e limpa o carrinho
-   */ 
+   */
   registrarPedido() {
 
     this.pedidoService.insert(this.pedido).subscribe(
-        response => {   console.log(response.headers.get("location") ) 
-                 this.carrinhoService.criarCarrinho();  }
-          // para o location funcionar precisa expor o header location no backend
-        , error =>  {   if(error.startus == 403) this.navCtrl.setRoot("HomePage")}
+      response => {
+
+        this.codpedido = this.extrairID(response.headers.get("location"))
+        this.carrinhoService.service.setCarrinho(this.carrinhoService.criarCarrinho());
+      }
+      // para o location funcionar precisa expor o header location no backend
+      , error => { if (error.startus == 403) this.navCtrl.setRoot("HomePage") }
     );
-    }
+  }
 
 
+  /**
+   *  Retorna apenas o id da url
+   * **/
+  extrairID(url: string): string {
+    console.log(url)
+      ; let posicao = url.lastIndexOf("/");
+
+    return url.substr(posicao + 1, url.length); // pega o id
+  }
 
 }
