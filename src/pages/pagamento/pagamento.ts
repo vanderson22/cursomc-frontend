@@ -44,15 +44,15 @@ export class PagamentoPage {
   proximaPagina() {
     console.log(this.form.value);
 
-    if (this.pedido){
-        if(this.form.value['@type'] == "pagamentoBoleto")
-           this.form.value['numeroParcelas'] = 0;
+    if (this.pedido) {
+      if (this.form.value['@type'] == "pagamentoBoleto")
+        this.form.value['numeroParcelas'] = 0;
       this.pedido.pagamento = this.form.value;
 
     }
     console.log(this.pedido);
-
-
+    // não permitir o retorno
+    this.navCtrl.setRoot("ConfirmacaoPedidoPage", { pedido: this.pedido });
   }
 
 

@@ -14,6 +14,12 @@ export class ClienteService {
 
    constructor(public http: HttpClient, public storage: StorageService) { }
 
+   findById(id: string): Observable<any> {
+
+       console.log(`Encontrar por id URL : ${API_CONFIG.baseUrl}/clientes/${id}`)
+      return this.http.get<any>(`${API_CONFIG.baseUrl}/clientes/${id}`);
+   }
+
    findByEmail(email: string): Observable<any> {
       //           let token =  this.storage.getLocalUser().token;
       // Não precisa mais incluir o header o interceptor fará esse papel  let authHeader = new HttpHeaders({'Authorization' : 'Bearer ' + token});

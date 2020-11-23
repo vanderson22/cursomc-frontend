@@ -31,7 +31,7 @@
 
     </ion-item>
     <ion-item *ngIf="total()> 0">
-      <h1>Total : {{total()}}</h1>
+      <h1>Total : {{total() | currency:"BRL":true:"1.2" }}</h1>
        
     </ion-item>
      <!-- ELSE-->
