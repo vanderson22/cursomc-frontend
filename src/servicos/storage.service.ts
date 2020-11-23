@@ -41,7 +41,7 @@ export class StorageService {
    getCarrinho(): Carrinho {
       let carrinho = localStorage.getItem(STORAGE_KEYS.carrinho);
 
-      console.log(`Carrinho recuperado ${carrinho}`);
+    //  console.log(`Carrinho recuperado ${carrinho}`);
       if (carrinho == null)
          return null;
       else
@@ -49,7 +49,7 @@ export class StorageService {
    }
    
    setCarrinho(carrinho: Carrinho) {
-      console.log(`Carrinho setado :  ${carrinho}`);
+    //  console.log(`Carrinho setado :  ${carrinho}`);
       if (carrinho == null)
          localStorage.removeItem(STORAGE_KEYS.carrinho)
       else
